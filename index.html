@@ -1,9 +1,187 @@
-hello yzy-151
-我的主页
-芜湖。。。。。。。。。。。。。
-仅支持静态网页
-仓库里面只能是.html
-访问需要http//：加上这个仓库的名字
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="聚焦 Agent Runtime、RAG、Memory、Context Engineering 与可观测评测的工程作品集。">
+  <meta name="theme-color" content="#07110f">
+  <title>Agent Systems Portfolio</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="返回首页">
+      <span class="brand-mark" aria-hidden="true">AS</span>
+      <span><strong>Agent Systems</strong><small>Engineering Portfolio</small></span>
+    </a>
+    <nav aria-label="主导航">
+      <a href="#projects">重点项目</a>
+      <a href="#capabilities">能力栈</a>
+      <a href="#archive">项目归档</a>
+      <a href="#contact">联系</a>
+    </nav>
+    <a class="header-link" href="https://github.com/yzy-151" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+  </header>
 
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span class="status-dot"></span> AGENT / RAG ALGORITHM ENGINEERING</p>
+          <h1>把 Agent 从模型调用，<br>推进到<span>可运行、可追踪、可评估</span>的系统。</h1>
+          <p class="hero-lede">围绕 Agent Runtime、混合检索、长期记忆、上下文工程与评测基础设施，构建从研究原型到工程闭环的项目。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">查看重点项目 <span aria-hidden="true">↓</span></a>
+            <a class="button secondary" href="mailto:yz11765@163.com">邮件联系</a>
+          </div>
+        </div>
+        <div class="system-panel reveal" aria-label="系统能力概览">
+          <div class="panel-head"><span>SYSTEM_PROFILE</span><span class="online">ONLINE</span></div>
+          <dl>
+            <div><dt>FOCUS</dt><dd>Agent Harness / RAG</dd></div>
+            <div><dt>RUNTIME</dt><dd>LangGraph / Async / SSE</dd></div>
+            <div><dt>RETRIEVAL</dt><dd>BM25 + Dense + RRF</dd></div>
+            <div><dt>MEMORY</dt><dd>Temporal / Hybrid / Durable</dd></div>
+            <div><dt>EVALUATION</dt><dd>Public Benchmarks / Trace</dd></div>
+          </dl>
+          <div class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="hero-strip" aria-label="技术方向">
+        <span>Agentic Loop</span><span>Tool Calling</span><span>Context Engineering</span><span>Hybrid RAG</span><span>Memory</span><span>Evaluation</span>
+      </div>
+    </section>
 
-搭建项目站点
+    <section class="section" id="projects">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow">01 / FEATURED WORK</p><h2>重点项目</h2></div>
+        <p>两个项目分别覆盖知识型 Agent 与数值实验 Agent，形成互补的系统实践。</p>
+      </div>
+
+      <article class="project project-paperstorm reveal">
+        <div class="project-titlebar">
+          <div><span class="project-index">PROJECT 01</span><h3>PaperStorm Agent</h3><p>论文调研、知识问答与可观测评测平台</p></div>
+          <a class="repo-link" href="https://github.com/yzy-151/paperstorm-agent" target="_blank" rel="noreferrer">SOURCE CODE ↗</a>
+        </div>
+        <figure class="project-visual">
+          <img src="assets/images/paperstorm-dashboard.png" alt="PaperStorm 论文调研工作台界面" width="1600" height="1350">
+          <figcaption>真实调研工作台：任务编排、执行链路、运行评分与文章交付统一呈现。</figcaption>
+        </figure>
+        <div class="project-body">
+          <div class="project-story">
+            <p class="label">SYSTEM BRIEF</p>
+            <h4>从 STORM 研究流程扩展为可恢复、可治理的知识型 Agent Harness。</h4>
+            <p>将论文检索、Multi-Agent 调研、知识库问答和证据引用整合为两条业务链路；以统一运行时承载检查点、重试、幂等、SSE Trace 与 Langfuse 可观测性。</p>
+            <ul class="feature-list">
+              <li><strong>Retrieval</strong><span>BM25 + Dense + RRF 混合召回，可选 CrossEncoder 重排与证据门控。</span></li>
+              <li><strong>Memory</strong><span>SQLite 持久化、时间有效事实、跨会话混合检索与冲突治理。</span></li>
+              <li><strong>Context</strong><span>分层 Token 预算、相关性过滤、摘要压缩与可恢复上下文。</span></li>
+              <li><strong>Runtime</strong><span>LangGraph 状态图、Checkpoint、失败恢复、工具契约与实时 Trace。</span></li>
+            </ul>
+          </div>
+          <div class="metrics" aria-label="PaperStorm 公开评测指标">
+            <div><span>QASPER</span><strong>0.5441</strong><small>Answer F1</small></div>
+            <div><span>SciFact</span><strong>0.7001</strong><small>nDCG@10 · Hybrid + Rerank</small></div>
+            <div><span>LongMemEval-S</span><strong>0.8003</strong><small>Recall@5</small></div>
+            <div><span>Context Evidence</span><strong>0.999847</strong><small>Retention · diagnostic</small></div>
+            <p class="metric-note">公开数据集与诊断实验口径，详细配置和可复现实验命令见项目 README。</p>
+          </div>
+        </div>
+        <details class="architecture">
+          <summary>查看系统架构</summary>
+          <img src="assets/images/paperstorm-architecture.svg" alt="PaperStorm 从外部资源到问答和深度调研的系统架构" width="1600" height="900">
+        </details>
+        <div class="tech-row"><span>Python</span><span>DSPy</span><span>LangGraph</span><span>FastAPI</span><span>SQLite</span><span>Langfuse</span><span>SSE</span></div>
+      </article>
+
+      <article class="project project-nonlinear reveal">
+        <div class="project-titlebar">
+          <div><span class="project-index">PROJECT 02</span><h3>Nonlinear NN Agent</h3><p>面向非线性校正实验的 Multi-Agent Harness</p></div>
+          <a class="repo-link" href="https://github.com/yzy-151/nonlinear-nn-agent" target="_blank" rel="noreferrer">SOURCE CODE ↗</a>
+        </div>
+        <figure class="project-visual">
+          <img src="assets/images/nonlinear-dashboard.png" alt="Nonlinear NN Agent 实验规划与运行事件界面" width="1527" height="886">
+          <figcaption>真实 Agent Planner：计划生成、工具调用、训练事件与实验产物形成可追溯闭环。</figcaption>
+        </figure>
+        <div class="project-body">
+          <div class="project-story">
+            <p class="label">SYSTEM BRIEF</p>
+            <h4>让 LLM 负责策略探索，让确定性工具与护栏负责实验可信度。</h4>
+            <p>围绕非线性系统辨识建立 Plan、Code、Execution、Writing 多 Agent 协作链路，并把参数预算、数据隔离、证据产物与失败恢复固化到运行时。</p>
+            <ul class="feature-list">
+              <li><strong>Agent Loop</strong><span>规划、执行、反思与自纠错循环，支持受控搜索与开放搜索。</span></li>
+              <li><strong>Tool System</strong><span>类型化工具注册、参数校验、超时控制和统一事件协议。</span></li>
+              <li><strong>Isolation</strong><span>Git worktree 隔离实验、独立测试集评估与数据泄漏防护。</span></li>
+              <li><strong>Evidence</strong><span>配置、日志、指标、图表和报告组合为可审计 Evidence Bundle。</span></li>
+            </ul>
+          </div>
+          <div class="metrics" aria-label="Nonlinear NN Agent 实验指标">
+            <div><span>Best Independent NMSE</span><strong>-23.0778 dB</strong><small>final evaluation</small></div>
+            <div><span>Parameter Count</span><strong>24</strong><small>compact model</small></div>
+            <div><span>Experiment Matrix</span><strong>8 / 9</strong><small>completed runs</small></div>
+            <div><span>Search Loop</span><strong>3 × 3</strong><small>rounds × candidates</small></div>
+            <p class="metric-note">数字来自仓库公开实验报告；独立测试结果与搜索过程分开记录。</p>
+          </div>
+        </div>
+        <details class="architecture">
+          <summary>查看执行架构</summary>
+          <img src="assets/images/nonlinear-architecture.png" alt="Nonlinear NN Agent 多智能体实验闭环架构" width="1600" height="900">
+        </details>
+        <div class="tech-row"><span>Python</span><span>PyTorch</span><span>FastAPI</span><span>SQLite</span><span>SSE</span><span>Git Worktree</span><span>MATLAB Data</span></div>
+      </article>
+    </section>
+
+    <section class="section capabilities" id="capabilities">
+      <div class="section-heading reveal"><div><p class="eyebrow">02 / CAPABILITY MAP</p><h2>能力栈</h2></div><p>关注模型之外的 Agent 系统工程：状态、边界、证据与反馈闭环。</p></div>
+      <div class="capability-grid">
+        <article class="reveal"><span>01</span><h3>Agent Runtime</h3><p>Agentic Loop、状态图、工具契约、Checkpoint、重试、幂等与失败恢复。</p><small>LangGraph · Async Python · SSE</small></article>
+        <article class="reveal"><span>02</span><h3>RAG System</h3><p>文档解析、Chunk、Embedding、Hybrid Retrieval、Rerank、引用与证据门控。</p><small>BM25 · Dense · RRF · CrossEncoder</small></article>
+        <article class="reveal"><span>03</span><h3>Memory & Context</h3><p>短期窗口、长期事实、时间有效性、Token 预算、分层压缩与跨会话恢复。</p><small>SQLite · Temporal Memory · Compression</small></article>
+        <article class="reveal"><span>04</span><h3>Evaluation</h3><p>公开 Benchmark、离线回归、运行 Trace、成本延迟分析与可复现实验产物。</p><small>QASPER · SciFact · LongMemEval · Langfuse</small></article>
+        <article class="reveal"><span>05</span><h3>Engineering</h3><p>API 服务、前后端联调、结构化日志、CI 网络隔离与依赖治理。</p><small>FastAPI · Git · unittest · GitHub</small></article>
+        <article class="reveal"><span>06</span><h3>Algorithm Experiment</h3><p>受约束搜索、训练评估隔离、指标对比、结果归因与实验报告自动生成。</p><small>PyTorch · NumPy · MATLAB · NMSE</small></article>
+      </div>
+    </section>
+
+    <section class="section archive" id="archive">
+      <div class="section-heading reveal"><div><p class="eyebrow">03 / REPOSITORY INDEX</p><h2>公开项目归档</h2></div><p>成熟项目重点呈现，课程、工具与早期练习完整保留。</p></div>
+      <div class="filters reveal" role="group" aria-label="筛选项目">
+        <button class="active" data-filter="all" type="button">全部</button>
+        <button data-filter="agent" type="button">Agent / AI</button>
+        <button data-filter="algorithm" type="button">算法与工程</button>
+        <button data-filter="early" type="button">早期项目</button>
+      </div>
+      <div class="repo-grid">
+        <a class="repo-card reveal" data-category="agent" href="https://github.com/yzy-151/paperstorm-agent" target="_blank" rel="noreferrer"><span>AGENT</span><h3>paperstorm-agent</h3><p>论文调研、知识问答、记忆与评测平台。</p><small>Python ↗</small></a>
+        <a class="repo-card reveal" data-category="agent" href="https://github.com/yzy-151/nonlinear-nn-agent" target="_blank" rel="noreferrer"><span>AGENT</span><h3>nonlinear-nn-agent</h3><p>面向非线性校正实验的 Multi-Agent Harness。</p><small>Python ↗</small></a>
+        <a class="repo-card reveal" data-category="algorithm" href="https://github.com/yzy-151/HITSZ-Helper" target="_blank" rel="noreferrer"><span>UTILITY</span><h3>HITSZ-Helper</h3><p>面向校园场景的实用工具项目。</p><small>Repository ↗</small></a>
+        <a class="repo-card reveal" data-category="algorithm" href="https://github.com/yzy-151/LED-Curve-Fitting-MATLAB" target="_blank" rel="noreferrer"><span>ALGORITHM</span><h3>LED Curve Fitting</h3><p>MATLAB 曲线拟合与数值实验。</p><small>MATLAB ↗</small></a>
+        <a class="repo-card reveal" data-category="algorithm" href="https://github.com/yzy-151/2023.7.15DSSS" target="_blank" rel="noreferrer"><span>SIGNAL</span><h3>2023.7.15 DSSS</h3><p>直接序列扩频相关实验代码。</p><small>Repository ↗</small></a>
+        <a class="repo-card reveal" data-category="algorithm" href="https://github.com/yzy-151/HITSZ-Resume-Template" target="_blank" rel="noreferrer"><span>TOOL</span><h3>HITSZ Resume Template</h3><p>LaTeX 简历模板工程。</p><small>TeX ↗</small></a>
+        <a class="repo-card reveal" data-category="early" href="https://github.com/yzy-151/2019D" target="_blank" rel="noreferrer"><span>ARCHIVE</span><h3>2019D</h3><p>早期建模与算法实践。</p><small>Repository ↗</small></a>
+        <a class="repo-card reveal" data-category="early" href="https://github.com/yzy-151/1-11" target="_blank" rel="noreferrer"><span>ARCHIVE</span><h3>1-11</h3><p>早期代码练习归档。</p><small>Repository ↗</small></a>
+        <a class="repo-card reveal" data-category="early" href="https://github.com/yzy-151/UITest" target="_blank" rel="noreferrer"><span>UI</span><h3>UITest</h3><p>界面开发实验。</p><small>Repository ↗</small></a>
+        <a class="repo-card reveal" data-category="early" href="https://github.com/yzy-151/Jan.6UITest" target="_blank" rel="noreferrer"><span>UI</span><h3>Jan.6UITest</h3><p>界面交互练习归档。</p><small>Repository ↗</small></a>
+        <a class="repo-card reveal" data-category="early" href="https://github.com/yzy-151/hello-world" target="_blank" rel="noreferrer"><span>ARCHIVE</span><h3>hello-world</h3><p>GitHub 入门仓库。</p><small>Repository ↗</small></a>
+        <a class="repo-card reveal" data-category="early" href="https://github.com/yzy-151/12-28" target="_blank" rel="noreferrer"><span>ARCHIVE</span><h3>12-28</h3><p>早期代码归档。</p><small>Repository ↗</small></a>
+        <a class="repo-card reveal" data-category="early" href="https://github.com/yzy-151/12-18-" target="_blank" rel="noreferrer"><span>ARCHIVE</span><h3>12-18-</h3><p>早期代码归档。</p><small>Repository ↗</small></a>
+        <a class="repo-card reveal" data-category="early" href="https://github.com/yzy-151/Activity" target="_blank" rel="noreferrer"><span>APP</span><h3>Activity</h3><p>应用开发练习。</p><small>Repository ↗</small></a>
+        <a class="repo-card reveal" data-category="early" href="https://github.com/yzy-151/C-language-2020" target="_blank" rel="noreferrer"><span>C</span><h3>C-language-2020</h3><p>C 语言学习与练习归档。</p><small>C ↗</small></a>
+        <a class="repo-card reveal" data-category="early" href="https://github.com/yzy-151/test11" target="_blank" rel="noreferrer"><span>ARCHIVE</span><h3>test11</h3><p>早期测试仓库。</p><small>Repository ↗</small></a>
+        <a class="repo-card reveal" data-category="algorithm" href="https://github.com/yzy-151/yzy-151" target="_blank" rel="noreferrer"><span>PROFILE</span><h3>yzy-151</h3><p>GitHub 个人资料配置仓库。</p><small>Repository ↗</small></a>
+        <a class="repo-card reveal" data-category="algorithm" href="https://github.com/yzy-151/yzy-151.github.io" target="_blank" rel="noreferrer"><span>WEB</span><h3>yzy-151.github.io</h3><p>当前静态技术作品集源码。</p><small>HTML ↗</small></a>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <p class="eyebrow">04 / CONTACT</p>
+      <div class="contact-row"><h2>讨论 Agent、RAG 与算法工程。</h2><a href="mailto:yz11765@163.com">yz11765@163.com <span aria-hidden="true">↗</span></a></div>
+    </section>
+  </main>
+
+  <footer><span>Agent Systems Portfolio</span><span>Built as a static, auditable GitHub Pages site.</span><a href="#top">返回顶部 ↑</a></footer>
+</body>
+</html>
