@@ -1,8 +1,9 @@
-const CACHE_VERSION = 'career-console-v92';
+const CACHE_VERSION = 'career-console-v94';
 const APP_SHELL = [
   './',
   './index.html',
   './manifest.webmanifest',
+  './assets/job-filters.js',
   './assets/avatar-sprint.jpg',
   './assets/avatar-review.jpg',
   './assets/hero-background.jpg',
