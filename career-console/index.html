@@ -941,7 +941,21 @@
 </div>
 
 <div class="page" id="page-talk">
-  <h2>🎤 面试话术库（15 条）</h2>
+  <h2>🎤 面试话术库（17 条）</h2>
+
+    <div class="talk-card" id="talk-communications-future">
+      <div class="talk-title">行业认知 · 通信未来的三个发展方向</div>
+      <div class="talk-text">如果选三个我比较关注的方向，我会选通信智能化、通感一体化，以及天地一体的泛在连接。这也与 ITU 的 IMT-2030 框架中的相关发展方向一致。<br><br>第一是通信智能化。我认为 AI 会逐步进入信道估计、波束管理、干扰处理和网络优化等环节。对于环境复杂、模型难以完全准确描述的问题，可以利用数据学习进行补充。我自己的神经网络互调干扰建模，就是在一个具体物理层问题上尝试这种方法。<br><br>第二是通感一体化。通信系统在传输信息的同时，进一步提供定位、目标检测和环境感知能力。我比较关注的是，多天线和波束赋形如何同时服务于通信与感知，以及两者之间的资源分配和干扰问题。这些能力也是目前 IMT-2030 框架讨论的重要内容。<br><br>第三是天地一体的泛在连接。通过地面网络与卫星等非地面网络协同，改善偏远地区、海上等场景的覆盖。我认为这里的价值是扩大可靠连接的范围，工程上还需要处理覆盖、时延、移动性和成本之间的取舍。<br><br>对通信算法岗位来说，我认为这些方向都需要落实到具体指标上：在有限频谱、功耗和计算资源下，改善真实用户的通信体验。</div>
+      <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">备答提醒：这是个人选择的三个关注方向，并非通信发展的唯一分类。资料核对于2026-10-27：<a href="https://www.itu.int/hub/2026/03/imt-2030-technical-requirements-for-the-6g-future/" target="_blank" rel="noopener noreferrer">ITU IMT-2030说明</a>、<a href="https://www.huawei.com/en/huaweitech/future-technologies/itu-r-wp5d-completed-recommendation-framework-imt-2030" target="_blank" rel="noopener noreferrer">华为框架解读</a>。</p>
+    </div>
+
+    <div class="talk-card" id="talk-ai-communications">
+      <div class="talk-title">行业认知 · 对 AI＋通信的理解</div>
+      <div class="talk-text">我主要从两个方面理解：用 AI 改善通信，以及用通信支持 AI。<br><br>前者更接近我的研究经历。比如干扰建模、波束预测、信道估计等任务，可以利用神经网络学习传统模型难以完整描述的关系。AI 波束预测已经进入相关标准框架，用于减少测量开销、改善波束选择。<br><br>我比较认可物理模型与数据学习相结合的路线。以我的互调干扰项目为例，我们知道发射信号与干扰之间存在关联，也知道系统包含时间响应、非线性激发和空间耦合，因此可以把这些认识融入网络结构，再用数据拟合具体关系。<br><br>如果继续做这个方向，我会重点关注三个问题：一是换设备、换场景后模型是否仍然有效；二是推理时延、参数量和定点实现是否满足硬件要求；三是模型失效时如何检测并回退。我的项目中就遇到过浮点效果改善、定点结果反而恶化的问题，所以我会同时关注算法性能和实现条件。<br><br>另一方面，AI 应用也需要通信网络支持。例如终端算力有限时，可以考虑端、边、云协同推理，但需要联合考虑传输开销、时延、能耗和隐私。<br><br>结合我的经历，我希望先从物理层中的明确问题切入，做轻量化、可验证、能够部署的 AI 算法，用实际收益证明它的价值。</div>
+      <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">备答提醒：围绕“物理模型＋数据学习＋工程约束”展开，可联系时空解耦、EAdam改进和定点排查；将未来设想与亲自完成的工作区分。标准依据：<a href="https://www.etsi.org/deliver/etsi_ts/138300_138399/138300/19.02.00_60/ts_138300v190200p.pdf" target="_blank" rel="noopener noreferrer">3GPP Release 19，TS 38.300第22.2节</a>。</p>
+    </div>
 
     <div class="talk-card" id="talk-project-eadam">
       <div class="talk-title">项目展开 · EAdam 收敛加速与自适应改进</div>
