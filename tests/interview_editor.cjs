@@ -31,7 +31,7 @@ const server = http.createServer((req, res) => {
     const page = await context.newPage();
     await openTalk(page);
     const card = page.locator('#talk-introduction-new');
-    assert.equal(await page.locator('#page-talk .talk-actions button', { hasText: '编辑' }).count(), 10);
+    assert.equal(await page.locator('#page-talk .talk-actions button', { hasText: '编辑' }).count(), 11);
     const original = await card.locator('.talk-text').innerText();
     await card.locator('.talk-title').click();
     assert.equal(await card.getByLabel('话术正文').inputValue(), original);
@@ -90,7 +90,7 @@ const server = http.createServer((req, res) => {
     const mobile = await mobileContext.newPage();
     await openTalk(mobile);
     await mobile.locator('#talk-import-file').setInputFiles({ name: 'backup.json', mimeType: 'application/json', buffer: backup });
-    await mobile.getByText('已导入 10 条话术并保存到当前浏览器。', { exact: true }).waitFor();
+    await mobile.getByText('已导入 11 条话术并保存到当前浏览器。', { exact: true }).waitFor();
     const mobileCard = mobile.locator('#talk-introduction-new');
     assert.equal(await mobileCard.locator('.talk-text').innerText(), body);
     const beforeBadImport = await mobile.evaluate(key => localStorage.getItem(key), KEY);
@@ -132,7 +132,7 @@ const server = http.createServer((req, res) => {
     await offline.getByText('面试话术', { exact: true }).click();
     assert.equal(await offlineCard.locator('.talk-text').innerText(), '离线修改');
     assert.deepEqual(errors, []);
-    console.log('PASS: all 10 editors, paragraph preservation, cancel, save/reload, literal HTML, clipboard, backup roundtrip, invalid import, cross-tab conflict, storage failure, empty content, mobile layout, offline save/reload.');
+    console.log('PASS: all 11 editors, paragraph preservation, cancel, save/reload, literal HTML, clipboard, backup roundtrip, invalid import, cross-tab conflict, storage failure, empty content, mobile layout, offline save/reload.');
   } finally {
     await browser.close();
     await new Promise(resolve => server.close(resolve));
