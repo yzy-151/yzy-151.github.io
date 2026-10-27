@@ -848,6 +848,7 @@
     .proj-name { padding-right: 0; }
   }
 </style>
+<link rel="stylesheet" href="assets/interview-editor.css">
 </head>
 <body>
 
@@ -955,42 +956,42 @@
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
     </div>
   
-    <div class="talk-card">
+    <div class="talk-card" id="talk-introduction-communications">
       <div class="talk-title">自我介绍 · 通信版（更新版）</div>
       <div class="talk-text">面试官你好，我叫袁振洋，本科和硕士都毕业于哈尔滨工业大学深圳校区，我的专业是电子信息，研究方向是通信的物理层算法，具体的课题是射频前端的一种叫无源互调的干扰抑制。我在华为已经实习了一年，主要分为三块内容。第一是关于射频前端一种叫无源互调的干扰的抑制，通过轻量化的神经网络建模这个互调干扰，再在接收端减去他。我主要负部分责线性层网络的设计与实验设计和实验验证，通过扩展模型层数实现了对辐射场景的无源互调建模的2dB性能提升。第二部分是针对轻量化网络的收敛加速问题，调研并仿真了一些前沿的优化器，落地了Eadam优化器，通过引入历史梯度差，在收敛速度上实现了最大1.45倍的加速效果，并解决了后期收敛振荡问题。第三块是我的课题，也是关于无源互调的抑制，我们通过导频获取无源互调的空间信息，通过波束搜索得到一个近似SVD分解的特征空间和对应的特征值，然后逐特征值去迫零干扰，最后得到一个能避开干扰源的波束赋形投影矩阵，主要应对辐射类型的无源互调。以上就是我的实习经历也是我自我介绍的主要内容</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
     </div>
-    <div class="talk-card">
+    <div class="talk-card" id="talk-introduction-agent">
       <div class="talk-title">自我介绍 · Agent版</div>
       <div class="talk-text">我的项目重点是 Agent 工程。先在 Nonlinear NN Agent 从零实现 Planner、Tool Registry、Hook、Session、Trace、Reflection 和 SSE；之后用 LangGraph 和 STORM 构建 PaperStorm，完成 Hybrid RAG、可恢复 Context、跨会话 Memory、企业 ACL 和 Benchmark。既理解 Harness 内核，也能用成熟框架落地。</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
     </div>
-    <div class="talk-card">
+    <div class="talk-card" id="talk-difficulty-baseband">
       <div class="talk-title">难点案例 STAR（基带验证）</div>
       <div class="talk-text">验证辐射 PIM 特征值 1~6 场景数据无法闭环，有 DDL。我及时上报，把复杂环境降为简单环境逐步排查，确认是多芯片采集不同步，联系开发重写采数软件解决。结果：1~6 特征值全部验证通过。收获：异常先降复杂度定位，再借团队视角。</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
     </div>
-    <div class="talk-card">
+    <div class="talk-card" id="talk-paper-status">
       <div class="talk-title">学术论文情况（按最新简历）</div>
       <div class="talk-text">最新简历列有论文 Blind External Passive Intermodulation Source Separation and CNN-based Localization for Reactive Near-field Massive MIMO Wireless Communications，投稿期刊为 IEEE Transactions on Vehicular Technology，当前标注为“已投”。截至2026-10-18本次更新，尚未提供录用或发表信息；作者顺序、具体贡献及审稿进度以本人实际情况为准。完整论文信息见“通用素材”。</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
     </div>
-    <div class="talk-card">
+    <div class="talk-card" id="talk-huawei-preference">
       <div class="talk-title">华为意愿更强吗？</div>
       <div class="talk-text">华为是我实习的地方，但我更看重岗位方向本身。华为做物理层算法，而这个岗位才是现在最想深入的方向。选工作不是选公司名气，是选接下来三五年有没有积累。</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
     </div>
-    <div class="talk-card">
+    <div class="talk-card" id="talk-leaving-huawei">
       <div class="talk-title">为什么不想留华为？</div>
       <div class="talk-text">不是不想留，是想换技术方向。华为做基站物理层算法，我发现对 Agent/大模型应用更感兴趣，自己做了两个项目验证。趁职业早期切换成本最低。</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
     </div>
-    <div class="talk-card">
+    <div class="talk-card" id="talk-question-pim">
       <div class="talk-title">反问1（PIM方向）</div>
       <div class="talk-text">未来 1-2 年团队在 PIM 方向的技术重点是什么？往算法深度走还是系统落地走？</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
     </div>
-    <div class="talk-card">
+    <div class="talk-card" id="talk-question-team">
       <div class="talk-title">反问2（团队构成）</div>
       <div class="talk-text">PIM 方向算法、仿真、硬件验证怎么分工？我进去后大概和哪些角色配合？</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
@@ -1445,5 +1446,6 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
   });
 }
 </script>
+<script src="assets/interview-editor.js"></script>
 </body>
 </html>
