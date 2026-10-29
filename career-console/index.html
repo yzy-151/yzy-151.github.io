@@ -848,6 +848,7 @@
     .proj-name { padding-right: 0; }
   }
 </style>
+<link rel="stylesheet" href="assets/interview-editor.css">
 </head>
 <body>
 
@@ -940,44 +941,106 @@
 </div>
 
 <div class="page" id="page-talk">
-  <h2>🎤 面试话术库（8 条）</h2>
+  <h2>🎤 面试话术库（17 条）</h2>
+
+    <div class="talk-card" id="talk-communications-future">
+      <div class="talk-title">行业认知 · 通信未来的三个发展方向</div>
+      <div class="talk-text">如果选三个我比较关注的方向，我会选通信智能化、通感一体化，以及天地一体的泛在连接。这也与 ITU 的 IMT-2030 框架中的相关发展方向一致。<br><br>第一是通信智能化。我认为 AI 会逐步进入信道估计、波束管理、干扰处理和网络优化等环节。对于环境复杂、模型难以完全准确描述的问题，可以利用数据学习进行补充。我自己的神经网络互调干扰建模，就是在一个具体物理层问题上尝试这种方法。<br><br>第二是通感一体化。通信系统在传输信息的同时，进一步提供定位、目标检测和环境感知能力。我比较关注的是，多天线和波束赋形如何同时服务于通信与感知，以及两者之间的资源分配和干扰问题。这些能力也是目前 IMT-2030 框架讨论的重要内容。<br><br>第三是天地一体的泛在连接。通过地面网络与卫星等非地面网络协同，改善偏远地区、海上等场景的覆盖。我认为这里的价值是扩大可靠连接的范围，工程上还需要处理覆盖、时延、移动性和成本之间的取舍。<br><br>对通信算法岗位来说，我认为这些方向都需要落实到具体指标上：在有限频谱、功耗和计算资源下，改善真实用户的通信体验。</div>
+      <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">备答提醒：这是个人选择的三个关注方向，并非通信发展的唯一分类。资料核对于2026-10-27：<a href="https://www.itu.int/hub/2026/03/imt-2030-technical-requirements-for-the-6g-future/" target="_blank" rel="noopener noreferrer">ITU IMT-2030说明</a>、<a href="https://www.huawei.com/en/huaweitech/future-technologies/itu-r-wp5d-completed-recommendation-framework-imt-2030" target="_blank" rel="noopener noreferrer">华为框架解读</a>。</p>
+    </div>
+
+    <div class="talk-card" id="talk-ai-communications">
+      <div class="talk-title">行业认知 · 对 AI＋通信的理解</div>
+      <div class="talk-text">我主要从两个方面理解：用 AI 改善通信，以及用通信支持 AI。<br><br>前者更接近我的研究经历。比如干扰建模、波束预测、信道估计等任务，可以利用神经网络学习传统模型难以完整描述的关系。AI 波束预测已经进入相关标准框架，用于减少测量开销、改善波束选择。<br><br>我比较认可物理模型与数据学习相结合的路线。以我的互调干扰项目为例，我们知道发射信号与干扰之间存在关联，也知道系统包含时间响应、非线性激发和空间耦合，因此可以把这些认识融入网络结构，再用数据拟合具体关系。<br><br>如果继续做这个方向，我会重点关注三个问题：一是换设备、换场景后模型是否仍然有效；二是推理时延、参数量和定点实现是否满足硬件要求；三是模型失效时如何检测并回退。我的项目中就遇到过浮点效果改善、定点结果反而恶化的问题，所以我会同时关注算法性能和实现条件。<br><br>另一方面，AI 应用也需要通信网络支持。例如终端算力有限时，可以考虑端、边、云协同推理，但需要联合考虑传输开销、时延、能耗和隐私。<br><br>结合我的经历，我希望先从物理层中的明确问题切入，做轻量化、可验证、能够部署的 AI 算法，用实际收益证明它的价值。</div>
+      <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">备答提醒：围绕“物理模型＋数据学习＋工程约束”展开，可联系时空解耦、EAdam改进和定点排查；将未来设想与亲自完成的工作区分。标准依据：<a href="https://www.etsi.org/deliver/etsi_ts/138300_138399/138300/19.02.00_60/ts_138300v190200p.pdf" target="_blank" rel="noopener noreferrer">3GPP Release 19，TS 38.300第22.2节</a>。</p>
+    </div>
+
+    <div class="talk-card" id="talk-project-eadam">
+      <div class="talk-title">项目展开 · EAdam 收敛加速与自适应改进</div>
+      <div class="talk-text">这个项目是围绕轻量化互调干扰建模网络的训练效率开展的。我们发现，在小批量训练场景下，网络存在收敛较慢、训练后期更新振荡的问题，因此希望在保持拟合精度的同时，加快模型收敛并提高训练稳定性。<br><br>我主要负责优化器调研、仿真比较，以及后续自适应策略的设计。我独立调研并实现了 Muon、CAdam、EAdam 等方案，对比它们在我们任务中的收敛表现，最终采用 EAdam 并进一步改进。<br><br>我采用的 EAdam 在 Adam 的基础上，引入了相邻两步梯度差的指数滑动平均，用这一项修正当前梯度，再计算一阶矩和二阶矩。这样，更新过程除了利用梯度本身，也利用了梯度随迭代变化的信息。它的目标是改善更新过程、加快达到目标精度的速度，具体收益需要通过实验判断，并不是每一步计算的开销变小了。<br><br>在我们的实验中，相对 AdamW 最高取得了约1.45倍的收敛加速。但在训练后期，梯度减弱，历史梯度差中的噪声影响变得突出，仍会引起更新振荡。针对这一问题，我设计了 alpha 参数随梯度大小自适应衰减的策略，降低后期差分项对更新的扰动，在保留加速效果的同时改善收敛稳定性。<br><br>按照目前简历记录，改进方案已通过预研并进入 FPGA 在板验证阶段，相关成果已纳入项目组平台芯片的 PIMC 算法方案。这个项目让我积累了从论文方案复现、任务适配到工程验证的经验，其中我的主要贡献是优化器的比较选型，以及针对后期振荡设计的自适应改进。<br><br>【追问：EAdam 的核心公式是什么？】<br>设当前梯度为 g_t，先计算 a_t = β_a·a_(t−1) + (1−β_a)·(g_t−g_(t−1))，再构造修正梯度 u_t = g_t + α·a_t。随后用 u_t 更新 Adam 的一阶矩和二阶矩，做偏差修正后更新参数。这里的 α 控制差分修正强度；按该公式的符号，原论文中正 α 偏向加速收敛，负 α 偏向探索，实际效果依赖任务与参数。<br><br>【追问：你的改进在哪里？】<br>EAdam 的基础机制来自已有研究。我的工作是独立调研和仿真比较，并针对任务中出现的后期振荡，设计随梯度大小调整 alpha 的策略。讲具体公式和超参数时，我会以实际代码为准，区分已有算法与自己的改进。</div>
+      <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">备答提醒：补充1.45倍的统计口径（迭代次数或实际耗时）、目标精度、batch size、重复实验次数、α符号与衰减公式；区分方案纳入、FPGA验证和量产部署。公式参考 <a href="https://openreview.net/pdf/7eb65210d89188df610837e0c1783a538b2ef8d1.pdf" target="_blank" rel="noopener noreferrer">原论文第3页及附录 Algorithm 4</a>，尚未核对项目代码。</p>
+    </div>
+
+    <div class="talk-card" id="talk-project-spatial-suppression">
+      <div class="talk-title">项目展开 · 多天线波束赋形无源互调抑制</div>
+      <div class="talk-text">这个项目是我的硕士课题，主要研究如何通过调整基站发射端的波束，减少无源互调干扰的激发。已有的接收端数字对消方案需要重建干扰，而这个课题希望利用多天线的空间自由度，从发射端降低干扰源受到的激励，并与接收端方案协同。<br><br>我主要围绕干扰模型、空间信息获取、波束赋形方案和实验验证开展工作。核心难点是干扰的空间信息不能直接获得，同时抑制干扰不能以过度牺牲正常用户的通信性能为代价。<br><br>在模型层面，我从相关性出发描述干扰的空间特征，利用相关矩阵的分解分析主要干扰方向及其能量分布。在实际获取空间信息时，我结合导频和波束搜索，通过有限差分方式搜索能较强激发干扰的权值方向，获得对主要干扰子空间的近似估计。<br><br>找到这些方向后，就可以调整发射信号的空间分量，减少向这些方向的投影。直观地说，搜索时先找出哪些发射权值容易激发干扰，实际通信时再减少这些方向上的发射分量，从而降低干扰激发。<br><br>但干扰方向可能与用户需要的发射方向存在重合，投影也会损失部分有效信号功率。因此，我以用户通信质量阈值约束抑制力度，分析干扰抑制收益与功率回退之间的关系，选择满足用户通信要求的波束赋形权值。<br><br>实验方面，我在微波暗室采集多组数据，验证不同干扰源数量和干扰强度下的性能。简历中对应的实验结果是阵列级干扰抑制达到约10 dB，全通道用户功率回退不超过1.5 dB。这个课题让我积累了从空间建模、算法设计到实测验证的经验，也让我更加重视算法收益与通信代价之间的取舍。<br><br>【追问：投影矩阵怎么理解？】<br>如果 U 的各列是相互正交且归一化的干扰子空间基，可以写出正交投影矩阵 P = I − U·Uᴴ，将发射向量 x 变为 P·x。它消除的是所估计子空间内的分量，而不是“把特征值置零”。实际空间估计有误差，系统还有其他限制，所以不能把这个理想模型的投影等同于实际干扰一定完全消失。<br><br>【追问：为什么不直接把发射功率降下来？】<br>直接整体降低功率也可能减弱干扰，但会同时影响用户信号。这个项目希望利用干扰的空间结构，有选择地减少容易激发干扰的发射分量，并在用户通信约束下衡量实际收益。</div>
+      <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">备答提醒：准备实际搜索目标、有限差分更新步骤、多方向搜索方式和停止条件；说明10 dB与1.5 dB的测试场景及统计口径。P = I − U·Uᴴ仅是正交基条件下的标准表达，项目实际归一化及权值构造以代码为准；本条未将简历中分离与定位论文直接归为该抑制项目的成果。</p>
+    </div>
+
+    <div class="talk-card" id="talk-achievement-eadam">
+      <div class="talk-title">行为面试 · 最有成就感的事情（EAdam 改进）</div>
+      <div class="talk-text">我比较有成就感的一件事，是在华为实习期间，把一个优化器方案进一步改进到适合实际项目的训练任务。<br><br>当时我们的轻量化干扰建模网络存在收敛慢、训练后期振荡的问题。我独立调研并仿真比较了几种优化器，采用 EAdam 后，相对 AdamW 最高实现了约1.45倍的收敛加速。<br><br>但加速之后，训练后期的稳定性仍然需要改善。我进一步分析了梯度和差分项的作用，针对后期梯度减弱、差分噪声影响增大的问题，设计了 alpha 随梯度大小自适应衰减的策略，降低后期差分项的扰动，兼顾加速和稳定收敛。<br><br>后来，这个方案通过预研，进入 FPGA 在板验证阶段，相关成果也纳入了项目组平台芯片的 PIMC 算法方案。<br><br>这件事让我有成就感，是因为我经历了调研、复现、发现适配问题、提出改进，再到工程验证的过程。我能清楚地说明自己的工作解决了哪个具体问题，也看到研究和仿真结果能够对项目产生实际价值。</div>
+      <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">候选回答：基于已提供简历整理，主观感受请按真实体验调整。上线前请确认目前工程验证阶段和个人参与边界；未加入量产、业务收益或领导评价等未提供的事实。</p>
+    </div>
+
+    <div class="talk-card" id="talk-failure-fixed-point">
+      <div class="talk-title">行为面试 · 最有失败感的事情（输入约束方案受挫）</div>
+      <div class="talk-text">让我比较有失败感的一次经历，是在改进神经网络非线性层时，一轮原本希望改善模型的调整，反而让部分数据的定点仿真结果明显恶化。<br><br>当时我们发现，查表输入容易集中在区间边缘或者超出范围，导致只有少量样条区间得到有效训练。因此，我们尝试对非线性层输入增加约束，并用不同场景的数据检查效果。但结果是部分数据变好，另一些数据却出现异常，这与最初的预期不一致。<br><br>回头看，这次尝试暴露了我对层间增益分配和定点范围约束考虑得还不充分。我们后来通过对照和消融实验排查数据因素，再分析浮点与定点实现，发现输入受到约束后，部分增益被后续线性层吸收，导致一些模型参数超出定点表示范围。于是，我们把约束对象从输入改为样条系数，调整了方案。<br><br>这件事给我的教训是，一项局部改进需要放到完整链路里验证：不仅要看拟合效果，还要检查各层参数和中间量的范围。我也认识到，部分数据上的改善还不足以说明方案有效，必须覆盖不同场景，解释异常原因，再判断能否用于工程实现。</div>
+      <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">候选回答：这是一次阶段性方案受挫，不应包装成整个项目失败。补充你实际负责的环节、真实影响及修改后的验证结果；若该方案并非你提出，不要说成个人独立决策。当前未写成已彻底解决，也未虚构延期、损失或最终恢复指标。</p>
+    </div>
+
+    <div class="talk-card" id="talk-project-lightweight-cnn">
+      <div class="talk-title">项目展开 · 轻量化神经网络互调干扰对消</div>
+      <div class="talk-text">我想展开介绍一下在华为参与的基于轻量化神经网络的无源互调干扰建模对消项目。这个项目能比较完整地体现我在通信建模、网络结构设计和实验验证方面的能力。<br><br>项目要解决的是基站接收端的无源互调干扰问题。下行发射信号经过无源非线性环节后，会产生互调分量，其中落入上行接收频段的部分会影响接收性能。由于这类干扰与已知发射信号有关，我们利用神经网络建立两者之间的映射，重建干扰，再从接收信号中减去，实现数字对消。<br><br>我主要负责线性层的结构改进，以及相关的仿真、实验设计和验证，同时参与了非线性层的改进。项目的难点是既要提高建模精度，又要控制模型规模，并考虑后续定点实现的约束。<br><br>在结构设计上，我结合信号的时间响应和多通道之间的空间耦合关系，将原来同时处理这两部分的稠密卷积，改成深度可分离卷积与逐点线性映射的组合。具体来说，先处理各通道的时间特征，再完成通道之间的线性组合，实现时间和空间维度的解耦。项目改进后，模型参数量减少了35%，建模对消能力平均提升约2 dB。<br><br>在非线性层方面，我参与了用分段线性插值替代幂级数函数的工作，改善边缘输入区的拟合表现。这个过程中，我们还遇到了浮点效果改善、部分定点结果反而恶化的问题。通过排查发现，约束非线性层输入后，部分增益会转移到后续线性层，导致参数超出定点表示范围，因此进一步把约束对象调整为样条系数。<br><br>这个项目对我最大的锻炼，是让我把通信机理、网络结构和实现约束联系起来：既要能解释为什么这样设计，也要通过实验判断它在实际条件下是否有效。<br><br>【追问：为什么采用深度可分离卷积后性能提升？】<br>深度可分离卷积并不保证精度一定提高。它首先对网络结构施加了约束，减少参数；能否提高精度，要看这种约束是否适合具体任务。我的设计思路是让不同部分分别承担时间响应和空间耦合的建模任务。我理解这种划分可能让有限数据下的参数学习更有效，但具体原因需要消融实验支撑。参数减少35%和性能提升约2 dB是项目的实验结果，不能直接推广为所有场景都更好，也不能在缺少独立消融结果时，把整体性能收益全部归因于深度可分离卷积。</div>
+      <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">备答提醒：确认2 dB对应单独替换线性层还是整体方案；准备基线、相同训练条件、个人负责范围和定点改进后的验证结果。</p>
+    </div>
+
+    <div class="talk-card" id="talk-difficulty-fixed-point">
+      <div class="talk-title">项目难点与解决方案 · 神经网络定点仿真异常</div>
+      <div class="talk-text">我遇到过一个比较典型的困难，是轻量化神经网络在浮点仿真和定点仿真中的表现不一致。<br><br>我们的非线性层采用分段线性插值实现。最初发现，输入容易集中在查表区间的边缘，甚至超出范围，导致只有少量样条区间得到有效训练。为改善这个问题，我们先对非线性层的输入增加约束，并收集不同场景的数据，检查输入分布和取值范围。<br><br>但这个调整出现了一个反常现象：部分数据效果提升，另一些数据在定点仿真中反而明显恶化。<br><br>我们先怀疑是数据问题，通过对照和消融实验排查后，又将问题定位到定点实现。进一步分析发现，对非线性层输入施加约束后，网络会通过后续线性层补偿部分增益，导致一些模型参数变大，超出定点表示范围。这就解释了为什么仅看浮点效果，不能保证定点实现也正常。<br><br>因此，我们把约束对象从非线性层输入改为样条系数，调整了正则化方案。这个过程让我认识到，面向硬件实现优化网络，必须同时考虑各层之间的增益分配和定点数值范围，不能只看最终的浮点拟合指标。</div>
+      <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">备答提醒：补充个人负责的排查与修改环节、实际惩罚项形式，以及修改后参数是否仍超限、异常数据是否恢复、正常数据性能是否保留。验证结果尚未补充，暂不表述为已彻底解决。</p>
+    </div>
+
+    <div class="talk-card" id="talk-introduction-new">
+      <div class="talk-title">新版自我介绍</div>
+      <div class="talk-text">面试官你好，我叫袁振洋，本科和硕士都来自于哈尔滨工业大学深圳校区，我的专业是电子信息，主要研究射频系统中的无源互调干扰抑制。曾获得研究生国家奖学金和电子设计竞赛数学建模竞赛等三项省级竞赛奖励，担任过学生党支部副书记和班长等职务。<br><br>我在华为已经实习了一年，获得了优秀实习生，主要参与三方面的工作。第一是关于射频接收端一种叫无源互调的干扰抑制，基站下行频段的双载波信号在遇到非线性器件时会产生高次交调，落入接收端干扰上行信号。我们通过轻量化的神经网络，利用已知信号重建干扰，再进行抵消。我负责线性层网络的结构改进以及实验设计和验证，通过引入深度可分离卷积，实现了空间与时间解耦，减少35%参数量同时，建模能力获得2dB提升。<br><br>第二部分是针对轻量化网络的收敛加速问题，调研并仿真了一些前沿的优化器，落地了Eadam优化器，通过引入历史梯度差，在收敛速度上实现了最大1.45倍的加速效果，相关工作已纳入项目组平台芯片的 PIMC 算法方案。<br><br>第三块是我的课题，我们在发射端通过波束搜索得到一组能最大化激发干扰功率的权值，然后通过把发射信号投影到这组权值的0空间中去迫零干扰，在实验室中实现了10dB的干扰抑制，已经撰写论文并投递。以上就是我的实习经历也是我自我介绍的主要内容。</div>
+      <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
+    </div>
   
-    <div class="talk-card">
+    <div class="talk-card" id="talk-introduction-communications">
       <div class="talk-title">自我介绍 · 通信版（更新版）</div>
       <div class="talk-text">面试官你好，我叫袁振洋，本科和硕士都毕业于哈尔滨工业大学深圳校区，我的专业是电子信息，研究方向是通信的物理层算法，具体的课题是射频前端的一种叫无源互调的干扰抑制。我在华为已经实习了一年，主要分为三块内容。第一是关于射频前端一种叫无源互调的干扰的抑制，通过轻量化的神经网络建模这个互调干扰，再在接收端减去他。我主要负部分责线性层网络的设计与实验设计和实验验证，通过扩展模型层数实现了对辐射场景的无源互调建模的2dB性能提升。第二部分是针对轻量化网络的收敛加速问题，调研并仿真了一些前沿的优化器，落地了Eadam优化器，通过引入历史梯度差，在收敛速度上实现了最大1.45倍的加速效果，并解决了后期收敛振荡问题。第三块是我的课题，也是关于无源互调的抑制，我们通过导频获取无源互调的空间信息，通过波束搜索得到一个近似SVD分解的特征空间和对应的特征值，然后逐特征值去迫零干扰，最后得到一个能避开干扰源的波束赋形投影矩阵，主要应对辐射类型的无源互调。以上就是我的实习经历也是我自我介绍的主要内容</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
     </div>
-    <div class="talk-card">
+    <div class="talk-card" id="talk-introduction-agent">
       <div class="talk-title">自我介绍 · Agent版</div>
       <div class="talk-text">我的项目重点是 Agent 工程。先在 Nonlinear NN Agent 从零实现 Planner、Tool Registry、Hook、Session、Trace、Reflection 和 SSE；之后用 LangGraph 和 STORM 构建 PaperStorm，完成 Hybrid RAG、可恢复 Context、跨会话 Memory、企业 ACL 和 Benchmark。既理解 Harness 内核，也能用成熟框架落地。</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
     </div>
-    <div class="talk-card">
+    <div class="talk-card" id="talk-difficulty-baseband">
       <div class="talk-title">难点案例 STAR（基带验证）</div>
       <div class="talk-text">验证辐射 PIM 特征值 1~6 场景数据无法闭环，有 DDL。我及时上报，把复杂环境降为简单环境逐步排查，确认是多芯片采集不同步，联系开发重写采数软件解决。结果：1~6 特征值全部验证通过。收获：异常先降复杂度定位，再借团队视角。</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
     </div>
-    <div class="talk-card">
+    <div class="talk-card" id="talk-paper-status">
       <div class="talk-title">学术论文情况（按最新简历）</div>
       <div class="talk-text">最新简历列有论文 Blind External Passive Intermodulation Source Separation and CNN-based Localization for Reactive Near-field Massive MIMO Wireless Communications，投稿期刊为 IEEE Transactions on Vehicular Technology，当前标注为“已投”。截至2026-10-18本次更新，尚未提供录用或发表信息；作者顺序、具体贡献及审稿进度以本人实际情况为准。完整论文信息见“通用素材”。</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
     </div>
-    <div class="talk-card">
+    <div class="talk-card" id="talk-huawei-preference">
       <div class="talk-title">华为意愿更强吗？</div>
       <div class="talk-text">华为是我实习的地方，但我更看重岗位方向本身。华为做物理层算法，而这个岗位才是现在最想深入的方向。选工作不是选公司名气，是选接下来三五年有没有积累。</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
     </div>
-    <div class="talk-card">
+    <div class="talk-card" id="talk-leaving-huawei">
       <div class="talk-title">为什么不想留华为？</div>
       <div class="talk-text">不是不想留，是想换技术方向。华为做基站物理层算法，我发现对 Agent/大模型应用更感兴趣，自己做了两个项目验证。趁职业早期切换成本最低。</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
     </div>
-    <div class="talk-card">
+    <div class="talk-card" id="talk-question-pim">
       <div class="talk-title">反问1（PIM方向）</div>
       <div class="talk-text">未来 1-2 年团队在 PIM 方向的技术重点是什么？往算法深度走还是系统落地走？</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
     </div>
-    <div class="talk-card">
+    <div class="talk-card" id="talk-question-team">
       <div class="talk-title">反问2（团队构成）</div>
       <div class="talk-text">PIM 方向算法、仿真、硬件验证怎么分工？我进去后大概和哪些角色配合？</div>
       <button class="copy-btn" onclick="copyProj(this)">一键复制</button>
@@ -1432,5 +1495,6 @@ if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
   });
 }
 </script>
+<script src="assets/interview-editor.js"></script>
 </body>
 </html>
