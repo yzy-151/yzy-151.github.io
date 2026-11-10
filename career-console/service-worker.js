@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'career-console-v167';
+const CACHE_VERSION = 'career-console-v168';
 const APP_SHELL = [
   './',
   './index.html',
