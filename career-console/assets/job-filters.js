@@ -10,7 +10,7 @@
 
   function extractAppliedDate(history, year) {
     const text = String(history || '').replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]*>/g, ' ');
-    const events = /(?:^|[^\d])(?:(\d{4})[-/.年])?(\d{1,2})[-/.月](\d{1,2})日?\s*(?:已投(?:递)?|改投|重投|再次投递|投递成功)/g;
+    const events = /(?:^|[^\d])(?:(\d{4})[-/.年])?(\d{1,2})[-/.月](\d{1,2})日?\s*(?:已投(?:递)?|改投|重投|再次投递|投递(?!日待补)(?:成功)?)/g;
     let latest = '';
     for (const match of text.matchAll(events)) {
       const date = `${match[1] || year}-${match[2].padStart(2, '0')}-${match[3].padStart(2, '0')}`;
